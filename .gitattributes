@@ -1,0 +1,28 @@
+# Auto-detect text files and normalize line endings to LF on commit
+* text=auto
+
+# Explicitly declare text file types to always be normalized
+*.java text diff=java
+*.kt text diff=kotlin
+*.gradle text
+*.gradle.kts text
+*.properties text
+*.json text
+*.toml text
+*.yml text
+*.yaml text
+*.xml text
+*.md text
+*.txt text
+LICENSE text
+.editorconfig text
+.gitignore text
+.gitattributes text
+
+# Keep batch files with CRLF endings for Windows compatibility
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Ensure shell scripts always use LF endings
+*.sh text eol=lf
+gradlew text eol=lf

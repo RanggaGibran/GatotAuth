@@ -1,0 +1,33 @@
+[versions]
+java = "21"
+spotless = "6.25.0"
+junit = "5.11.0"
+assertj = "3.26.3"
+mockito = "5.12.0"
+testcontainers = "1.20.1"
+
+# Target platform APIs (for dependency references, kept clean and modern)
+velocity = "3.3.0-SNAPSHOT"
+paper = "1.20.4-R0.1-SNAPSHOT"
+luckperms = "5.4"
+packetevents = "2.4.0"
+hikaricp = "5.1.0"
+sqlite = "3.46.0.0"
+jbcrypt = "0.4"
+
+[libraries]
+# Testing
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+assertj-core = { group = "org.assertj", name = "assertj-core", version.ref = "assertj" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { group = "org.mockito", name = "mockito-junit-jupiter", version.ref = "mockito" }
+testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "testcontainers" }
+testcontainers-junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+velocity-api = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
+hikaricp = { group = "com.zaxxer", name = "HikariCP", version.ref = "hikaricp" }
+sqlite-jdbc = { group = "org.xerial", name = "sqlite-jdbc", version.ref = "sqlite" }
+jbcrypt = { group = "org.mindrot", name = "jbcrypt", version.ref = "jbcrypt" }
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
