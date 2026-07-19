@@ -11,7 +11,7 @@ velocity = "3.3.0-SNAPSHOT"
 paper = "1.20.4-R0.1-SNAPSHOT"
 luckperms = "5.4"
 packetevents = "2.4.0"
-hikaricp = "5.1.0"
+hikaricp = "7.1.0"
 sqlite = "3.46.0.0"
 jbcrypt = "0.4"
 
