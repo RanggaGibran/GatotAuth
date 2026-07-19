@@ -2,6 +2,11 @@
 
 All notable changes to GatotAuth will be documented in this file. This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-07-19
+
+### Changed
+- **Paper Commands Brigadier Migration**: Migrated `/login` and `/register` commands from legacy Bukkit CommandExecutor to the modern Paper Brigadier `BasicCommand` and `LifecycleEventManager` APIs (using Paper 1.21 API).
+
 ## [0.2.0] - 2026-07-19
 
 ### Added

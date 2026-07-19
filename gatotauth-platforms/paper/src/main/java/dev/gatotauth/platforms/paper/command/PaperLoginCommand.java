@@ -6,17 +6,21 @@ import dev.gatotauth.core.auth.AuthenticationContext;
 import dev.gatotauth.core.auth.AuthenticationEngine;
 import dev.gatotauth.core.auth.AuthenticationResult;
 import dev.gatotauth.core.infra.bootstrap.GatotAuthEngine;
+import io.papermc.paper.command.brigadier.BasicCommand;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * PaperLoginCommand executes Bukkit/Paper /login command verifying password credentials.
+ * PaperLoginCommand executes Paper /login command verifying password credentials.
  */
-public final class PaperLoginCommand implements CommandExecutor {
+@SuppressWarnings("UnstableApiUsage")
+public final class PaperLoginCommand implements BasicCommand {
     private final GatotAuthEngine engine;
 
     /**
@@ -27,15 +31,16 @@ public final class PaperLoginCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void execute(@NotNull CommandSourceStack source, @NotNull String[] args) {
+        CommandSender sender = source.getSender();
         if (!(sender instanceof Player player)) {
             sender.sendMessage(ChatColor.RED + "Only players can execute this command.");
-            return true;
+            return;
         }
 
         if (args.length < 1) {
             player.sendMessage(ChatColor.RED + "Usage: /login <password>");
-            return true;
+            return;
         }
 
         String password = args[0];
@@ -54,7 +59,7 @@ public final class PaperLoginCommand implements CommandExecutor {
         AuthenticationEngine authEngine = engine.getRegistry().get(AuthenticationEngine.class);
         if (authEngine == null) {
             player.sendMessage(ChatColor.RED + "Authentication service is currently unavailable.");
-            return true;
+            return;
         }
 
         player.sendMessage(ChatColor.GRAY + "Authenticating...");
@@ -65,6 +70,10 @@ public final class PaperLoginCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "Authentication failed: " + failure.reason());
             }
         });
-        return true;
+    }
+
+    @Override
+    public @NotNull Collection<String> suggest(@NotNull CommandSourceStack source, @NotNull String[] args) {
+        return Collections.emptyList();
     }
 }

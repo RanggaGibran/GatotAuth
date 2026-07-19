@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * Main plugin entry point for Paper platform adapter.
  */
+@SuppressWarnings("UnstableApiUsage")
 public class PaperGatotAuthPlugin extends JavaPlugin {
     private GatotAuthEngine engine;
 
@@ -41,15 +42,14 @@ public class PaperGatotAuthPlugin extends JavaPlugin {
         this.engine.bootstrap();
         getServer().getPluginManager().registerEvents(new PaperPlayerListener(engine), this);
 
-        PaperLoginCommand loginCmd = new PaperLoginCommand(engine);
-        PaperRegisterCommand regCmd = new PaperRegisterCommand(engine);
-
-        if (getCommand("login") != null) {
-            getCommand("login").setExecutor(loginCmd);
-        }
-        if (getCommand("register") != null) {
-            getCommand("register").setExecutor(regCmd);
-        }
+        this.getLifecycleManager().registerEventHandler(
+                io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents.COMMANDS,
+                event -> {
+                    final io.papermc.paper.command.brigadier.Commands commands = event.registrar();
+                    commands.register("login", new PaperLoginCommand(engine));
+                    commands.register("register", new PaperRegisterCommand(engine));
+                }
+        );
 
         getLogger().info("GatotAuth Paper Platform Adapter initialized successfully.");
     }
