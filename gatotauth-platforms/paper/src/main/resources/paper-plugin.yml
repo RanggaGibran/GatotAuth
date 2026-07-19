@@ -1,0 +1,6 @@
+name: GatotAuth
+version: 1.0.0-SNAPSHOT
+main: dev.gatotauth.platforms.paper.PaperGatotAuthPlugin
+api-version: '1.20'
+description: Modern authentication plugin for Paper
+author: GatotAuth contributors

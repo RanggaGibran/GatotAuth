@@ -1,0 +1,6 @@
+name: GatotAuthLoader
+version: 1.0.0-SNAPSHOT
+main: dev.gatotauth.loaders.paper.PaperGatotAuthLoader
+api-version: '1.20'
+description: Classloader-isolated bootstrap loader for Paper
+author: GatotAuth contributors
