@@ -19,7 +19,7 @@ jobs:
     - name: Build release binaries
       run: ./gradlew build
     - name: Create Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         files: |
           gatotauth-platforms/velocity/build/libs/*.jar
