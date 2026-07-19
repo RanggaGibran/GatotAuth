@@ -2,6 +2,8 @@ package dev.gatotauth.platforms.paper;
 
 import dev.gatotauth.core.infra.bootstrap.GatotAuthEngine;
 import dev.gatotauth.core.infra.logging.GatotAuthLogger;
+import dev.gatotauth.platforms.paper.command.PaperLoginCommand;
+import dev.gatotauth.platforms.paper.command.PaperRegisterCommand;
 import dev.gatotauth.platforms.paper.listener.PaperPlayerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,6 +40,17 @@ public class PaperGatotAuthPlugin extends JavaPlugin {
         this.engine = new GatotAuthEngine(coreLogger);
         this.engine.bootstrap();
         getServer().getPluginManager().registerEvents(new PaperPlayerListener(engine), this);
+
+        PaperLoginCommand loginCmd = new PaperLoginCommand(engine);
+        PaperRegisterCommand regCmd = new PaperRegisterCommand(engine);
+
+        if (getCommand("login") != null) {
+            getCommand("login").setExecutor(loginCmd);
+        }
+        if (getCommand("register") != null) {
+            getCommand("register").setExecutor(regCmd);
+        }
+
         getLogger().info("GatotAuth Paper Platform Adapter initialized successfully.");
     }
 

@@ -4,3 +4,10 @@ main: dev.gatotauth.platforms.paper.PaperGatotAuthPlugin
 api-version: '1.20'
 description: Modern authentication plugin for Paper
 author: GatotAuth contributors
+commands:
+  login:
+    description: Authenticate with your password
+    usage: /login <password>
+  register:
+    description: Register a new account
+    usage: /register <password>
