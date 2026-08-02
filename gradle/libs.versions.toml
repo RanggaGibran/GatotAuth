@@ -7,7 +7,7 @@ mockito = "5.12.0"
 testcontainers = "1.20.1"
 
 # Target platform APIs (for dependency references, kept clean and modern)
-velocity = "3.3.0-SNAPSHOT"
+velocity = "4.0.0"
 paper = "1.21-R0.1-SNAPSHOT"
 luckperms = "5.4"
 packetevents = "2.4.0"
